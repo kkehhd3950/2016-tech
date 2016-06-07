@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var foo = {x:10};
+        var bar = {
+            x : 20,
+            test : function(){
+                alert(this === bar);
+                alert(this.x);
+                
+              
+            }
+            
+        };
+        
+        foo.test = bar.test;
+        // bar.test();
+        foo.test();
+    </script>
+</body>
+</html>
