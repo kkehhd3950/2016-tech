@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 结构赋值
+
+		let [a, b, c] = [1,2,4];
+		// console.log(c);
+
+		function* fibs()
+		{
+			var a = 0;
+			var b = 1;
+			while(true) {
+				yield a;
+				[a, b] = [b, a + b];
+			}
+		}
+
+		var [first, second, third, fourth, fifth, sixth] = fibs();
+		// console.log(first);
+		// console.log(second);
+		// console.log(third);
+		// console.log(fourth);
+		// console.log(fifth);
+		// console.log(sixth);
+
+		// var [foo = true] = [];
+		// console.log(foo);
+
+		// [x, y = 'b'] = ['a', undefined];
+		// console.log(y);
+
+		function h() {
+			console.log('aaa');
+		}
+		// let [x = h()] = [];
+		// x;
+
+		var {foo, bar} = { foo : "aaa", bar : "bbb"};
+		// console.log(typeof foo);
+
+		var {foo : bar} = {foo : 'aaa'};
+		// console.log(foo);
+		let obj = { first: "hello", last: "world"};
+		let { first: f, last: l} = obj;
+		// console.log(f); // hello
+		// console.log(l); // world
+
+		var {foo2 : baz} = { foo2: "aaa", bar: "bbb"};
+		// console.log(foo2); // error not defined
+		// console.log(baz);
+
+		let foo1;
+		// let {foo} = {foo : 1};
+		// console.log(foo); // has declared
+		({foo1} = {foo1 : 1});
+		// console.log(foo1); // 1
+
+		let ba;
+		({bar : ba} = {bar : 'hsc'});
+		// console.log(ba); // hsc
+
+		var obj1 = {
+			p : ["hello", { y : "world"}],
+		};
+
+		var { p: [x, {y}]} = obj1;
+		// console.log(x) ; // hello
+		// console.log(y); // world
+
+		let obj2 = {};
+		let arr = [];
+
+		({ foo: obj2.prop, bar: arr[0]} = {foo: 1, bar: true});
+		// console.log(obj2); // prop : 1
+		// console.log(arr[0]); // true
+
+		let {log, sin, cos} = Math;
+		// console.log(sin);
+
+		let [a1, b1, c1, d1, e1] = "hello";
+		// console.log(a1 + b1 + c1 + d1 + e1); // hello
+		let {length : len} = "hello";
+		// console.log(len);
+
+		let {toString: s} = 123;
+		// console.log(s === Number.prototype.toString); // true
+		// console.log(s); // function 
+		let {toString: s1} = true;
+		// console.log(s1 === Boolean.prototype.toString); // true
+
+		function add([x, y])
+		{
+			return x + y;
+		}
+
+		// console.log(add([1, 2])); // 3
+
+		[[1, 2], [3, 4]].map(([a, b]) => a + b);
+
+		let [q] = [5];
+		// alert(q); 5
+
+		let m = 10;
+		let n = 12;
+		[m, n] = [n, m];
+		// console.log(m + ' : ' + n);
+
+		function example() {
+			return {
+				fo : 1,
+				br : 2
+			};
+		}
+
+		var {fo, br} = example();
+		// console.log(fo); // 1
+
+		var map = new Map();
+		map.set("first", "hello");
+		map.set("second", "world");
+
+		for(let [key, value] of map) {
+			// console.log(key + " is " + value);
+		}
+
+		for(let [key] of map) {
+			// console.log(key);
+		}
+
+		for(let [, value] of map)
+		{
+			// console.log(value);
+		}
+
+		// const {SourceMapConsumer, SourceNode} = require("source-map");
+
+		var [foo3] = 'hello';
+		// console.log(foo3); // h
+		var [foo4, bar2] = [1];
+		// console.log(bar2); // undefined
+	</script>
+</body>
+</html>

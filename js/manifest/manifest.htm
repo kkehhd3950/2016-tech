@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html manifest="myapp.manifest" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	hello world!!!
+
+	<script>
+		window.applicationCache.onupdateready = function() {
+			var reload = confirm("A new version of this application is available\n" + "and will be used the next time you reload.\n" + "Do you want to reload now?");
+
+			if(reload) {
+				location.reload();
+			}
+		};
+
+		function status(msg) {
+			document.getElementById("statusline").innerHTML = msg;
+			console.log(msg);
+		}
+
+		window.applicationCache.onChecking = function() {
+			status("Checking for a new version.");
+			return false;
+		};
+
+		window.applicationCache.onupdate = function() {
+			status("This version is up-to-date.");
+			return false;
+		};
+
+		window.applicationCache.ondownloading = function() {
+			status("Downloading new version");
+			window.progresscount = 0;
+			return false;
+		};
+
+		window.applicationCache.onprogress = function(e) {
+			var progress = "";
+			if(e && e.lengthComputable) {
+				progress = " " + Math.round(100 * e.loaded / e.total) + "%";
+			} else {
+				progress = " (" + ++progresscount + ")";
+			}
+
+			status("Downloading new version" + progress);
+			return false;
+		};
+
+		window.applicationCache.oncached = function() {
+			status("This application is now cached locally");
+			return false;
+		};
+
+		window.applicationCache.onupdateready = function() {
+			status("Couldn't load manifest or cache application");
+			return false;
+		}; 
+
+		window.applicationCache.onerror = function() {
+			status("Couldn't load manifest or cache application");
+			return false;
+		};
+
+		window.applicationCache.onobsolete = function() {
+			status("This application is no longer cached." + "Reload to get the latest version from the network");
+			return false;
+		};
+
+		
+	</script>
+</body>
+</html>

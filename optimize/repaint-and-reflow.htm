@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 100px;
+			height: 100px;
+			background: #f00;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		window.onload = function() {
+			var oBody = document.getElementsByTagName("body")[0];
+			// 批量增加
+			// var oDiv = document.createElement("div");
+			// var oFragment = document.createDocumentFragment();
+			// for(var i = 0; i < 10000; i++) {
+			// 	var sDiv = oDiv.appendChild(document.createElement("div"));
+			// }
+
+			// oBody.appendChild(oDiv);
+			for( var i = 0; i < 10000; i++) {
+				var oDiv = document.createElement("div");
+				oBody.appendChild(oDiv);
+			}
+
+			
+		};
+	</script>
+</body>
+</html>
